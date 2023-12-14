@@ -1,7 +1,7 @@
-
 with open("teste.txt","r") as file:
     arquivo = file.readlines()
 for line in arquivo:
+    insert = 0
     if line.startswith("Id"):
         id = line[4:].strip()
         print("id: ",id)
@@ -38,7 +38,9 @@ for line in arquivo:
         print("category_ids: ", category_ids)
         print("category_names: ", category_names)
     if line.startswith("  reviews"):
-
+        if line[18] == "0":
+            insert = 1
+            review_flag = 0
     if "cutomer" in line:
         review = line.split()
         review_flag = 1
@@ -48,4 +50,14 @@ for line in arquivo:
         votes = review[6]
         helpful = review[8]
         print(date,customer_id,rating,votes,helpful)
+        review_flag = 1
         print("")
+    if line == " ":
+        insert = 1
+        
+    if insert == 1:
+        #inserir dados na tabela
+        
+        
+    #limpar dados e zerar o insert
+        insert = 0
